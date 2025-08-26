@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chị Cá Sinh Nhật Zui Zẻ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #1a2a6c, #b3e5fc);
+            overflow: hidden;
+        }
+
+        .card {
+            position: relative;
+            width: 800px;
+            height: 500px;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23b3e5fc" fill-opacity="0.9" d="M0,128L48,117.3C96,107,192,85,288,85.3C384,85,480,107,576,101.3C672,96,768,64,864,74.7C960,85,1056,139,1152,149.3C1248,160,1344,128,1392,112L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"%3E%3C/path%3E%3C/svg%3E');
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .ocean {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to top, #1a2a6c, #42a5f5, #b3e5fc);
+            clip-path: ellipse(100% 60% at 50% 100%);
+        }
+
+        .waves {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 150px;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%23ffffff" fill-opacity="0.2" d="M0,96L48,112C96,128,192,160,288,176C384,192,480,192,576,186.7C672,181,768,171,864,149.3C960,128,1056,96,1152,85.3C1248,75,1344,85,1392,90.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E');
+            animation: wave 7s linear infinite;
+            transform: translateX(0);
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
+            animation: bubbleFloat 6s infinite;
+        }
+
+        .bubble:nth-child(1) { width: 15px; height: 15px; left: 15%; top: 60%; animation-delay: 0s; }
+        .bubble:nth-child(2) { width: 20px; height: 20px; left: 35%; top: 50%; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 10px; height: 10px; left: 60%; top: 70%; animation-delay: 1s; }
+        .bubble:nth-child(4) { width: 25px; height: 25px; left: 80%; top: 55%; animation-delay: 3s; }
+        .bubble:nth-child(5) { width: 40px; height: 40px; left: 10%; animation-delay: 0s; }
+        .bubble:nth-child(6) { width: 20px; height: 20px; left: 20%; animation-delay: 2s; }
+        .bubble:nth-child(7) { width: 60px; height: 60px; left: 35%; animation-delay: 1s; }
+        .bubble:nth-child(8) { width: 30px; height: 30px; left: 50%; animation-delay: 3s; }
+        .bubble:nth-child(9) { width: 25px; height: 25px; left: 65%; animation-delay: 1.5s; }
+        .bubble:nth-child(10) { width: 45px; height: 45px; left: 80%; animation-delay: 2.5s; }
+        .bubble:nth-child(11) { width: 15px; height: 15px; left: 90%; animation-delay: 0.5s; }
+
+        @keyframes bubbleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        .fish {
+            position: absolute;
+            width: 60px;
+            height: 40px;
+            animation: swimAcross 20s infinite linear;
+        }
+
+        .fish:nth-child(1) { top: 25%; animation-delay: 0s; filter: hue-rotate(0deg); }
+        .fish:nth-child(2) { top: 50%; animation-delay: 7s; filter: hue-rotate(120deg); }
+        .fish:nth-child(3) { top: 35%; animation-delay: 14s; filter: hue-rotate(240deg); }
+
+        .fish::before {
+            content: '🐠';
+            font-size: 40px;
+            position: absolute;
+            animation: fishWiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes swimAcross {
+            0% { left: -100px; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fishWiggle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .title {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+            width: 90%;
+        }
+
+        .title h1 {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 5px;
+            line-height: 2;
+            letter-spacing: 0;
+        }
+
+        .title p {
+            font-size: 1.5em;
+            color: #ffe4b5;
+            text-shadow: 0 0 10px #fff, 0 0 20px #ffeb3b, 0 0 30px #ffeb3b;
+            animation: glow 2s ease-in-out infinite alternate;
+            line-height: 1.5;
+            letter-spacing: 0;
+            margin-top: 0;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 15px #00ffff;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #00ffff, 0 0 25px #00ffff;
+            }
+        }
+
+        .coral {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ff6b9d);
+            border-radius: 50% 50% 0 0;
+            animation: coralSway 8s ease-in-out infinite;
+        }
+
+        .coral:nth-child(1) { left: 2%; width: 70px; height: 150px; animation-delay: 0s; z-index: 1; }
+        .coral:nth-child(2) { left: 8%; width: 50px; height: 120px; animation-delay: 1s; background: linear-gradient(45deg, #ff9a56, #ff6b9d, #c44569); z-index: 2; }
+        .coral:nth-child(3) { left: 15%; width: 60px; height: 130px; animation-delay: 2s; background: linear-gradient(45deg, #ff6b6b, #ff8e53); z-index: 1; }
+        .coral:nth-child(4) { right: 15%; width: 75px; height: 160px; animation-delay: 1.5s; background: linear-gradient(45deg, #ff6b9d, #c44569, #ff8e53); z-index: 2; }
+        .coral:nth-child(5) { right: 8%; width: 55px; height: 125px; animation-delay: 0.5s; background: linear-gradient(45deg, #ff8e53, #ff6b6b); z-index: 1; }
+        .coral:nth-child(6) { right: 2%; width: 65px; height: 140px; animation-delay: 2.5s; background: linear-gradient(45deg, #c44569, #ff6b9d); z-index: 2; }
+
+        @keyframes coralSway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .seaweed {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(180deg, #228b22, #32cd32, #90ee90);
+            border-radius: 10px;
+            animation: seaweedSway 6s ease-in-out infinite;
+        }
+
+        .seaweed:nth-child(1) { left: 25%; width: 15px; height: 220px; animation-delay: 0s; z-index: 3; }
+        .seaweed:nth-child(2) { left: 30%; width: 12px; height: 190px; animation-delay: 1s; background: linear-gradient(180deg, #2d5016, #228b22, #32cd32); z-index: 2; }
+        .seaweed:nth-child(3) { left: 65%; width: 18px; height: 210px; animation-delay: 2s; background: linear-gradient(180deg, #228b22, #90ee90, #98fb98); z-index: 3; }
+        .seaweed:nth-child(4) { left: 70%; width: 14px; height: 180px; animation-delay: 0.5s; z-index: 2; }
+        .seaweed:nth-child(5) { left: 40%; width: 16px; height: 200px; animation-delay: 1.5s; background: linear-gradient(180deg, #2d5016, #32cd32, #90ee90); z-index: 3; }
+        .seaweed:nth-child(6) { left: 85%; width: 13px; height: 170px; animation-delay: 2.5s; z-index: 2; }
+
+        @keyframes seaweedSway {
+            0%, 100% { transform: rotate(-5deg) scaleY(1); }
+            50% { transform: rotate(5deg) scaleY(1.1); }
+        }
+
+        .kelp {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(180deg, #006400, #228b22, #32cd32, #90ee90);
+            border-radius: 8px;
+            animation: kelpWave 7s ease-in-out infinite;
+        }
+
+        .kelp:nth-child(1) { left: 35%; width: 10px; height: 240px; animation-delay: 0s; z-index: 1; }
+        .kelp:nth-child(2) { left: 55%; width: 8px; height: 220px; animation-delay: 1.5s; z-index: 2; }
+        .kelp:nth-child(3) { left: 75%; width: 12px; height: 260px; animation-delay: 3s; z-index: 1; }
+
+        @keyframes kelpWave {
+            0%, 100% { transform: rotate(-3deg) scaleY(0.95); }
+            33% { transform: rotate(3deg) scaleY(1.05); }
+            66% { transform: rotate(-2deg) scaleY(1); }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: sparkleGlow 2s infinite;
+        }
+
+        .sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 35%; left: 85%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 25%; left: 60%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { top: 45%; left: 25%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 55%; left: 75%; animation-delay: 0.3s; }
+
+        @keyframes sparkleGlow {
+            0%, 100% { opacity: 0; transform: scale(1); box-shadow: 0 0 6px #fff; }
+            50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 12px #fff, 0 0 18px #87ceeb; }
+        }
+
+        .message {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            animation: messageGlow 5s ease-in-out infinite;
+            width: 85%;
+            max-width: 600px;
+        }
+
+        .message h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            line-height: 2;
+            letter-spacing: 0;
+        }
+
+        .message p {
+            color: #ffe4b5;
+            font-size: 0.95em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            line-height: 1.5;
+            letter-spacing: 0;
+            margin-top: 0;
+        }
+
+        @keyframes messageGlow {
+            0%, 100% { box-shadow: 0 0 25px rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(255, 255, 255, 0.5); border-color: rgba(255, 255, 255, 0.6); }
+        }
+
+        .dolphin {
+            position: absolute;
+            font-size: 50px;
+            animation: dolphinJump 12s infinite;
+            z-index: 5;
+        }
+
+        .dolphin::before {
+            content: '🐬';
+        }
+
+        @keyframes dolphinJump {
+            0% { left: -100px; top: 60%; transform: rotate(0deg); }
+            25% { left: 25%; top: 15%; transform: rotate(-20deg); }
+            50% { left: 50%; top: 45%; transform: rotate(10deg); }
+            75% { left: 75%; top: 20%; transform: rotate(-10deg); }
+            100% { left: 100%; top: 60%; transform: rotate(0deg); }
+        }
+/* Các lớp cho icon động mới với hiệu ứng nhảy */
+
+
+/* Các lớp cho icon động mới với hiệu ứng nhảy */
+/* Các lớp cho icon động với hiệu ứng nhảy */
+/* Các lớp cho icon động mới với hiệu ứng nhảy */
+.whale, .whale2, .fish2 {
+    position: absolute;
+    font-size: 50px;
+    animation: dolphinJump 12s infinite;
+    z-index: 5;
+}
+
+.whale { top: 20%; left: -150px; animation-delay: 3s; filter: hue-rotate(180deg); }
+.whale2 { top: 40%; left: -200px; animation-delay: 10s; filter: hue-rotate(300deg); }
+.fish2 { top: 30%; left: -100px; animation-delay: 5s; filter: hue-rotate(90deg); }
+
+.whale::before { content: '🐳'; }
+.whale2::before { content: '🐋'; }
+.fish2::before { content: '🐟'; }
+
+@keyframes dolphinJump {
+    0% { left: -100px; top: 60%; transform: rotate(0deg); }
+    25% { left: 20%; top: 15%; transform: rotate(-20deg); }
+    50% { left: 50%; top: 45%; transform: rotate(10deg); }
+    75% { left: 80%; top: 20%; transform: rotate(-10deg); }
+    100% { left: 110%; top: 60%; transform: rotate(0deg); }
+}
+
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="ocean"></div>
+        <div class="waves"></div>
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+        <div class="fish"></div>
+        <div class="fish"></div>
+        <div class="fish"></div>
+        <div class="title">
+            <h1>Happy Birthday Chị Cá!</h1>
+            <p>Chúc Chị Cá một ngày thật vui vẻ!</p>
+        </div>
+        <div class="coral"></div>
+        <div class="coral"></div>
+        <div class="coral"></div>
+        <div class="coral"></div>
+        <div class="coral"></div>
+        <div class="coral"></div>
+        <div class="seaweed"></div>
+        <div class="seaweed"></div>
+        <div class="seaweed"></div>
+        <div class="seaweed"></div>
+        <div class="seaweed"></div>
+        <div class="seaweed"></div>
+        <div class="kelp"></div>
+        <div class="kelp"></div>
+        <div class="kelp"></div>
+        <div class="sparkles">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+                <div class="whale"></div>
+<div class="whale2"></div>
+<div class="fish2"></div>
+        <div class="message">
+            <h2>Happy Birthday, Chị Cá!</h2>
+            <p>Chúc mừng sinh nhật thật rực rỡ nhé chị Nhi – cô nàng Cá tinh nghịch của mọi người! Chúc chị luôn bơi trong đại dương niềm vui, bắt được thật nhiều khoảnh khắc hạnh phúc, và luôn khỏe mạnh, thành công như những con sóng mạnh mẽ. Happy birthday, Chị Cá ơi – mong chị luôn tỏa sáng như ngọc trai dưới biển sâu! 🎂🐠</p>
+        </div>
+        <div class="dolphin"></div>
+    </div>
+</body>
+</html>
